@@ -154,7 +154,7 @@
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      padding: 5rem 5vw 3rem;
+      padding: 0 5vw 3rem;
       background: transparent;
       position: relative;
       overflow: visible;
@@ -232,16 +232,7 @@
       padding: 0.4rem 0;
     }
 
-    .section-title::before {
-      content: '';
-      position: absolute;
-      inset: -6px -40px;
-      background-image: url('nav-watercolor.png');
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: -1;
-    }
+    .section-title::after { display: none; }
 
     /* ── BEGLEITEN ── */
     #begleiten {
@@ -590,15 +581,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <ul>
-      <li><a href="#begleiten">Persönliche Begleitung</a></li>
-      <li><a href="#preise">Ablauf &amp; Preise</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-  </nav>
-
   <!-- HERO -->
   <section class="hero">
     <div class="hero-logo-wrap fade-in">
@@ -676,7 +658,7 @@
   <!-- ZEITEN & PREISE -->
   <div id="preise">
     <div id="preise-inner">
-      <h2 class="section-title fade-in">Ablauf &amp; Preise</h2>
+      <h2 class="section-title fade-in">Ablauf &amp; Preis</h2>
 
       <div class="preis-card fade-in">
         <div class="preis-header">
