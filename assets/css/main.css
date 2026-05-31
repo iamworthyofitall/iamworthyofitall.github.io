@@ -8602,6 +8602,15 @@ input, select, textarea {
 			#wrapper.divided > .invert:first-child {
 				box-shadow: none !important;
 			}
+/* Kompakter Footer für alle Geräte */
+#wrapper .divided > footer {
+	padding: 1.5rem !important;
+}
+#wrapper .divided > footer p {
+	margin: 0.1rem 0 !important;
+	line-height: 1.6 !important;
+}
+
 /* Custom mobile overrides */
 @media screen and (max-width: 980px) {
 	#wrapper .banner .content img {
@@ -8613,10 +8622,13 @@ input, select, textarea {
 		text-align: center !important;
 	}
 	#wrapper .divided > footer p {
-		display: flex !important;
-		flex-direction: column !important;
-		align-items: center !important;
-		gap: 0.3rem !important;
-		font-size: 0.85em !important;
+		display: block !important;
+		text-align: center !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		line-height: 1.6 !important;
+	}
+	#wrapper .divided > footer {
+		padding: 1rem !important;
 	}
 }
