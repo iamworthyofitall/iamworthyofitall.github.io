@@ -7220,6 +7220,10 @@ input, select, textarea {
 		width: 64rem;
 	}
 
+	#wrapper .divided > footer .inner {
+		padding: 1.5rem 3.5rem !important;
+	}
+
 		.wrapper.style1 > .inner.medium {
 			width: 48rem;
 		}
