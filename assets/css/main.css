@@ -7221,7 +7221,7 @@ input, select, textarea {
 	}
 
 	#wrapper .divided > footer .inner {
-		padding: 1.5rem 3.5rem !important;
+		padding: 1rem 3.5rem !important;
 	}
 
 		.wrapper.style1 > .inner.medium {
@@ -8608,7 +8608,10 @@ input, select, textarea {
 			}
 /* Kompakter Footer für alle Geräte */
 #wrapper .divided > footer {
-	padding: 1.5rem !important;
+	padding: 0.5rem !important;
+}
+#wrapper .divided > footer .inner {
+	padding: 0.8rem 3.5rem !important;
 }
 #wrapper .divided > footer p {
 	margin: 0.1rem 0 !important;
