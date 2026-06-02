@@ -8639,3 +8639,10 @@ input, select, textarea {
 		padding: 1rem !important;
 	}
 }
+
+/* Kein Abstand vor Listen in Spotlight-Bereichen */
+.spotlight .content p + ul,
+.spotlight .content ul {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
