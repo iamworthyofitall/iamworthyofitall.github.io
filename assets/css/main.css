@@ -8646,3 +8646,11 @@ input, select, textarea {
 	margin-top: 0 !important;
 	padding-top: 0 !important;
 }
+
+/* Geen ruimte tussen p en ul in spotlight */
+.spotlight .content p {
+	margin-bottom: 0.6em !important;
+}
+.spotlight .content p + ul {
+	margin-top: -0.4em !important;
+}
