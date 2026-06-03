@@ -8640,12 +8640,25 @@ input, select, textarea {
 	}
 }
 
-/* Kein Abstand vor Listen in Spotlight-Bereichen */
-.spotlight .content p + ul,
-.spotlight .content ul {
-	margin-top: 0 !important;
-	padding-top: 0 !important;
+
+/* Mobile overrides */
+@media screen and (max-width: 980px) {
+	#wrapper .banner .content img {
+		max-width: 85vw !important;
+		width: 85vw !important;
+		height: auto !important;
+	}
+	#wrapper .banner .content {
+		text-align: center !important;
+	}
+	#wrapper .divided > footer p {
+		display: block !important;
+		text-align: center !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		line-height: 1.6 !important;
+	}
+	#wrapper .divided > footer {
+		padding: 1rem !important;
+	}
 }
-
-/* Geen ruimte tussen p en ul in spotlight */
-
