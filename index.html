@@ -103,13 +103,31 @@
 			/* Banner: Hintergrund nur links im Textbereich */
 			#wrapper .banner { background: none !important; }
 			#wrapper .banner .content {
-				background-image: url('images/banner-bg.png') !important;
-				background-size: cover !important;
-				background-position: center !important;
 				position: relative !important;
 				min-height: 100vh !important;
 				box-sizing: border-box !important;
 				padding: 0 3rem !important;
+				overflow: hidden !important;
+			}
+			/* Hintergrundbild als img für mobile Kontrolle */
+			#wrapper .banner .content .banner-bg {
+				position: absolute !important;
+				top: 0 !important; left: 0 !important;
+				width: 100% !important; height: 100% !important;
+				object-fit: cover !important;
+				object-position: center !important;
+				z-index: 0 !important;
+			}
+			#wrapper .banner .content > *:not(.banner-bg) {
+				position: relative !important;
+				z-index: 1 !important;
+			}
+			@media screen and (max-width: 980px) {
+				#wrapper .banner .content .banner-bg {
+					width: 90% !important;
+					left: 5% !important;
+					border-radius: 8px !important;
+				}
 			}
 			#wrapper .banner .content ul.actions {
 				position: absolute !important;
