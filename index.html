@@ -423,14 +423,6 @@
 					return;
 				}
 
-				var zeitfenster = document.getElementById('zeitfenster').value.trim();
-				if (zeitfenster === '') {
-					errorEl.textContent = 'Bitte gib an, welche Tage und Zeitfenster für dich passen.';
-					errorEl.style.display = 'block';
-					document.getElementById('zeitfenster').focus();
-					return;
-				}
-
 				// 3. CAPTCHA prüfen
 				var userAnswer = parseInt(document.getElementById('captcha').value, 10);
 				if (isNaN(userAnswer) || userAnswer !== correctAnswer) {
