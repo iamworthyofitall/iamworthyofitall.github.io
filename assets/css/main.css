@@ -8640,35 +8640,17 @@ input, select, textarea {
 	}
 }
 
-
-/* Mobile overrides */
-@media screen and (max-width: 980px) {
-	#wrapper .banner .content img {
-		max-width: 85vw !important;
-		width: 85vw !important;
-		height: auto !important;
-	}
-	#wrapper .banner .content {
-		text-align: center !important;
-	}
-	#wrapper .divided > footer p {
-		display: block !important;
-		text-align: center !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		line-height: 1.6 !important;
-	}
-	#wrapper .divided > footer {
-		padding: 1rem !important;
-	}
+/* Kein Abstand vor Listen in Spotlight-Bereichen */
+.spotlight .content p + ul,
+.spotlight .content ul {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
 }
 
-/* Logo Abstand zum Rand auf Mobil */
-@media screen and (max-width: 980px) {
-	.banner .content img {
-		padding-left: 5vw !important;
-		padding-right: 5vw !important;
-		box-sizing: border-box !important;
-		max-width: 100% !important;
-	}
+/* Geen ruimte tussen p en ul in spotlight */
+.spotlight .content p {
+	margin-bottom: 0.6em !important;
+}
+.spotlight .content p + ul {
+	margin-top: -0.4em !important;
 }
