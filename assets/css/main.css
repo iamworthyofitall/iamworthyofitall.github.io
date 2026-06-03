@@ -8662,3 +8662,13 @@ input, select, textarea {
 		padding: 1rem !important;
 	}
 }
+
+/* Logo Abstand zum Rand auf Mobil */
+@media screen and (max-width: 980px) {
+	.banner .content img {
+		padding-left: 5vw !important;
+		padding-right: 5vw !important;
+		box-sizing: border-box !important;
+		max-width: 100% !important;
+	}
+}
