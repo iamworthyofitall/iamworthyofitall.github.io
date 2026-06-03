@@ -7631,7 +7631,7 @@ input, select, textarea {
 		-webkit-justify-content: center;
 		-ms-justify-content: center;
 		justify-content: center;
-		margin: 0.5rem 0;
+		margin: 1rem 0 2rem 0;
 		position: relative;
 	}
 
