@@ -7631,7 +7631,7 @@ input, select, textarea {
 		-webkit-justify-content: center;
 		-ms-justify-content: center;
 		justify-content: center;
-		margin: 3rem 0;
+		margin: 0.5rem 0;
 		position: relative;
 	}
 
@@ -8623,9 +8623,6 @@ input, select, textarea {
 	#wrapper .banner .content img {
 		max-width: 85vw !important;
 		width: 85vw !important;
-		margin-left: auto !important;
-		margin-right: auto !important;
-		display: block !important;
 		height: auto !important;
 	}
 	#wrapper .banner .content {
