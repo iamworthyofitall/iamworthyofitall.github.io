@@ -71,10 +71,19 @@
 			.items.style1 section p + p {
 				margin-top: 0 !important;
 			}
-			/* Abstand zwischen Label und Eingabefeld verringern */
-			#kontaktform .field label {
-				margin-bottom: 0.2rem !important;
+			/* Einheitliche Abstände im Formular */
+			#kontaktform .field {
+				margin-bottom: 1.2rem !important;
 			}
+			#kontaktform .field label {
+				display: block !important;
+				margin-bottom: 0.4rem !important;
+			}
+			#kontaktform .field input,
+			#kontaktform .field textarea {
+				margin-top: 0 !important;
+			}
+			#kontaktform label, #captcha-label {
 				font-family: 'Quicksand', sans-serif !important;
 				color: #1b516a !important;
 			}
