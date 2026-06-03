@@ -2289,11 +2289,11 @@ input, select, textarea {
 
 			form > .fields {
 				width: calc(100% + 3rem);
-				margin: -1.5rem 0 2rem -1.5rem;
+				margin: -1rem 0 2rem -1.5rem;
 			}
 
 				form > .fields > .field {
-					padding: 1.5rem 0 0 1.5rem;
+					padding: 1rem 0 0 1.5rem;
 					width: calc(100% - 1.5rem);
 				}
 
