@@ -8648,9 +8648,4 @@ input, select, textarea {
 }
 
 /* Geen ruimte tussen p en ul in spotlight */
-.spotlight .content p {
-	margin-bottom: 0.6em !important;
-}
-.spotlight .content p + ul {
-	margin-top: -0.4em !important;
-}
+
