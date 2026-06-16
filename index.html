@@ -543,7 +543,6 @@
 				.then(function(response) {
 					if (response.ok) {
 						form.reset();
-						generateCaptcha();
 						successEl.style.display = 'block';
 						submitBtn.disabled = false;
 						submitBtn.value = 'Nachricht an Daniela senden';
@@ -556,7 +555,6 @@
 					errorEl.style.display = 'block';
 					submitBtn.disabled = false;
 					submitBtn.value = 'Nachricht an Daniela senden';
-					generateCaptcha();
 				});
 			});
 		})();
