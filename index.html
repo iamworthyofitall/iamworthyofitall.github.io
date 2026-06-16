@@ -197,6 +197,9 @@
 					max-height: 150vh !important;
 					overflow: hidden !important;
 				}
+				#wrapper .spotlight:nth-of-type(5) .image img {
+					object-position: 30% center !important;
+				}
 			}
 
 			/* Schriftzug Banner Overlay */
@@ -386,13 +389,15 @@
 								<label for="message">Dein Anliegen</label>
 								<textarea name="message" id="message" rows="6" required></textarea>
 							</div>
-							<!-- Mathematisches CAPTCHA -->
+							<!-- Sicherheitsfrage bei Bedarf hier wieder aktivieren -->
+							<!--
 							<div style="display: flex; justify-content: center; width: 100%; margin-top: 1rem;">
 								<div style="width: 16rem; text-align: center;">
 									<label for="captcha" id="captcha-label" style="display: block; margin-bottom: 0.5rem;">Sicherheitsfrage: wird geladen …</label>
 									<input type="text" id="captcha" name="_captcha_answer" required autocomplete="off" inputmode="numeric" style="width: 100%; text-align: center; border-radius: 8px !important; border-color: rgba(27, 81, 106, 0.35) !important;" />
 								</div>
 							</div>
+							-->
 						</div>
 
 						<!-- Web3Forms Honeypot -->
@@ -426,21 +431,20 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 
-		<!-- Kontaktformular: Honeypot + Math CAPTCHA (kein Cookie, kein Tracking) -->
+		<!-- Kontaktformular: Honeypot (kein Cookie, kein Tracking) -->
 		<script>
 		(function() {
-			var num1, num2, correctAnswer;
-
-			function generateCaptcha() {
-				num1 = Math.floor(Math.random() * 9) + 1;
-				num2 = Math.floor(Math.random() * 9) + 1;
-				correctAnswer = num1 + num2;
-				document.getElementById('captcha-label').textContent =
-					'Sicherheitsfrage: Was ist ' + num1 + ' + ' + num2 + ' ?';
-				document.getElementById('captcha').value = '';
-			}
-
-			generateCaptcha();
+			// Sicherheitsfrage (Math CAPTCHA) bei Bedarf hier wieder aktivieren:
+			// var num1, num2, correctAnswer;
+			// function generateCaptcha() {
+			// 	num1 = Math.floor(Math.random() * 9) + 1;
+			// 	num2 = Math.floor(Math.random() * 9) + 1;
+			// 	correctAnswer = num1 + num2;
+			// 	document.getElementById('captcha-label').textContent =
+			// 		'Sicherheitsfrage: Was ist ' + num1 + ' + ' + num2 + ' ?';
+			// 	document.getElementById('captcha').value = '';
+			// }
+			// generateCaptcha();
 
 			document.getElementById('kontaktform').addEventListener('submit', function(e) {
 				e.preventDefault();
@@ -488,16 +492,16 @@
 					return;
 				}
 
-				// 3. CAPTCHA prüfen
-				var userAnswer = parseInt(document.getElementById('captcha').value, 10);
-				if (isNaN(userAnswer) || userAnswer !== correctAnswer) {
-					errorEl.textContent = 'Die Antwort auf die Sicherheitsfrage ist leider nicht korrekt. Bitte versuche es nochmal.';
-					errorEl.style.display = 'block';
-					generateCaptcha();
-					return;
-				}
+				// 3. Sicherheitsfrage prüfen (bei Bedarf wieder aktivieren)
+				// var userAnswer = parseInt(document.getElementById('captcha').value, 10);
+				// if (isNaN(userAnswer) || userAnswer !== correctAnswer) {
+				// 	errorEl.textContent = 'Die Antwort auf die Sicherheitsfrage ist leider nicht korrekt. Bitte versuche es nochmal.';
+				// 	errorEl.style.display = 'block';
+				// 	generateCaptcha();
+				// 	return;
+				// }
 
-				// 3. Absenden
+				// 4. Absenden
 				var form = this;
 				var submitBtn = document.getElementById('submit-btn');
 				submitBtn.disabled = true;
