@@ -189,7 +189,7 @@
 				box-sizing: border-box !important;
 				padding: 0 3rem !important;
 				opacity: 0 !important;
-				transition: opacity 0.2s ease-out !important;
+				transition: opacity 0.6s ease-in-out !important;
 			}
 			#wrapper .banner .content.bg-ready {
 				opacity: 1 !important;
@@ -276,16 +276,15 @@
 			</section>
 
 			<script>
-				// Foto + Logo-Hintergrund: beide vorladen, beide ERST gemeinsam einblenden, wenn beide fertig sind
+				// Foto + Logo-Hintergrund: beide komplett unabhängig vorladen, beide ERST gemeinsam einblenden, wenn beide fertig sind
 				(function() {
 					var fotoImg = document.getElementById('banner-foto');
 					var contentEl = document.getElementById('banner-content');
-					var bgPreload = new Image();
-					var fotoReady = false;
-					var bgReady = false;
+					var loadedCount = 0;
 
-					function revealBoth() {
-						if (!fotoReady || !bgReady) return;
+					function checkReveal() {
+						loadedCount++;
+						if (loadedCount < 2) return;
 						requestAnimationFrame(function() {
 							requestAnimationFrame(function() {
 								if (fotoImg) fotoImg.style.opacity = '1';
@@ -294,17 +293,13 @@
 						});
 					}
 
-					bgPreload.onload = function() { bgReady = true; revealBoth(); };
-					bgPreload.src = 'images/banner-bg.jpg';
+					var fotoPreload = new Image();
+					fotoPreload.onload = checkReveal;
+					fotoPreload.src = 'images/banner.webp';
 
-					if (fotoImg) {
-						if (fotoImg.complete) {
-							fotoReady = true;
-							revealBoth();
-						} else {
-							fotoImg.onload = function() { fotoReady = true; revealBoth(); };
-						}
-					}
+					var bgPreload = new Image();
+					bgPreload.onload = checkReveal;
+					bgPreload.src = 'images/banner-bg.jpg';
 				})();
 
 				// Schriftzug: fester Timer statt Bild-Onload — garantiert sichtbare, gleichbleibende Verzögerung bei jedem Aufruf
