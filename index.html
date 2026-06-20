@@ -188,11 +188,6 @@
 				min-height: 100vh !important;
 				box-sizing: border-box !important;
 				padding: 0 3rem !important;
-				opacity: 0 !important;
-				transition: opacity 0.6s ease-in-out !important;
-			}
-			#wrapper .banner .content.bg-ready {
-				opacity: 1 !important;
 			}
 			@media screen and (max-width: 980px) {
 				#wrapper .banner .content {
@@ -265,11 +260,11 @@
 
 			<!-- Banner -->
 			<section class="banner style1 orient-left content-align-left image-position-right fullscreen" style="position: relative;">
-				<div class="content" id="banner-content" style="padding: 5% !important;">
+				<div class="content" id="banner-content" style="padding: 5% !important; clip-path: inset(0 0 0 100%); -webkit-clip-path: inset(0 0 0 100%); transition: clip-path 0.9s ease-in-out, -webkit-clip-path 0.9s ease-in-out;">
 				</div>
 				<div class="image" style="position: relative;">
 					<!-- FOTO BANNER: Ersetze images/banner.jpg mit deinem Bild -->
-					<img src="images/banner.webp" alt="" id="banner-foto" style="opacity: 0; transition: opacity 0.6s ease-in-out;" />
+					<img src="images/banner.webp" alt="" id="banner-foto" style="clip-path: inset(0 100% 0 0); -webkit-clip-path: inset(0 100% 0 0); transition: clip-path 0.9s ease-in-out, -webkit-clip-path 0.9s ease-in-out;" />
 				</div>
 				<!-- Schriftzug Overlay -->
 				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0; transition: opacity 0.9s ease-in-out;" />
@@ -277,6 +272,7 @@
 
 			<script>
 				// Foto + Logo-Hintergrund: beide komplett unabhängig vorladen, beide ERST gemeinsam einblenden, wenn beide fertig sind
+				// Reveal direkt per Inline-Style (kein CSS-Klassen-Umweg, keine Konflikte mit main.css möglich)
 				(function() {
 					var fotoImg = document.getElementById('banner-foto');
 					var contentEl = document.getElementById('banner-content');
@@ -287,8 +283,14 @@
 						if (loadedCount < 2) return;
 						requestAnimationFrame(function() {
 							requestAnimationFrame(function() {
-								if (fotoImg) fotoImg.style.opacity = '1';
-								if (contentEl) contentEl.classList.add('bg-ready');
+								if (fotoImg) {
+									fotoImg.style.clipPath = 'inset(0 0% 0 0)';
+									fotoImg.style.webkitClipPath = 'inset(0 0% 0 0)';
+								}
+								if (contentEl) {
+									contentEl.style.clipPath = 'inset(0 0 0 0%)';
+									contentEl.style.webkitClipPath = 'inset(0 0 0 0%)';
+								}
 							});
 						});
 					}
