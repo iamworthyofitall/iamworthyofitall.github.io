@@ -188,35 +188,25 @@
 				min-height: 100vh !important;
 				box-sizing: border-box !important;
 				padding: 0 3rem !important;
-				clip-path: inset(0 100% 0 0);
-				-webkit-clip-path: inset(0 100% 0 0);
+				opacity: 0;
+				transform: translateX(-1rem);
+				transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
 			}
 			#banner-foto {
-				clip-path: inset(0 0 0 100%);
-				-webkit-clip-path: inset(0 0 0 100%);
+				opacity: 0;
+				transform: translateX(1rem);
+				transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
 			}
-
-			@keyframes revealLeft {
-				from { clip-path: inset(0 0 0 100%); -webkit-clip-path: inset(0 0 0 100%); }
-				to   { clip-path: inset(0 0 0 0%);   -webkit-clip-path: inset(0 0 0 0%); }
-			}
-			@keyframes revealRight {
-				from { clip-path: inset(0 100% 0 0); -webkit-clip-path: inset(0 100% 0 0); }
-				to   { clip-path: inset(0 0%   0 0); -webkit-clip-path: inset(0 0%   0 0); }
-			}
-			@keyframes fadeIn {
-				from { opacity: 0; }
-				to   { opacity: 1; }
-			}
-
 			#wrapper .banner .content.reveal {
-				animation: revealRight 0.9s ease-in-out forwards !important;
+				opacity: 1;
+				transform: translateX(0);
 			}
 			#banner-foto.reveal {
-				animation: revealLeft 0.9s ease-in-out forwards !important;
+				opacity: 1;
+				transform: translateX(0);
 			}
 			#banner-schriftzug.reveal {
-				animation: fadeIn 0.9s ease-in-out forwards !important;
+				opacity: 1 !important;
 			}
 			@media screen and (max-width: 980px) {
 				#wrapper .banner .content {
@@ -295,7 +285,7 @@
 					<img src="images/banner.webp" alt="" id="banner-foto" />
 				</div>
 				<!-- Schriftzug Overlay -->
-				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0;" />
+				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0; transition: opacity 0.9s ease-in-out;" />
 			</section>
 
 			<script>
