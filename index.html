@@ -188,25 +188,6 @@
 				min-height: 100vh !important;
 				box-sizing: border-box !important;
 				padding: 0 3rem !important;
-				opacity: 0;
-				transform: translateX(-1rem);
-				transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
-			}
-			#banner-foto {
-				opacity: 0;
-				transform: translateX(1rem);
-				transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
-			}
-			#wrapper .banner .content.reveal {
-				opacity: 1;
-				transform: translateX(0);
-			}
-			#banner-foto.reveal {
-				opacity: 1;
-				transform: translateX(0);
-			}
-			#banner-schriftzug.reveal {
-				opacity: 1 !important;
 			}
 			@media screen and (max-width: 980px) {
 				#wrapper .banner .content {
@@ -279,10 +260,10 @@
 
 			<!-- Banner -->
 			<section class="banner style1 orient-left content-align-left image-position-right fullscreen" style="position: relative;">
-				<div class="content" id="banner-content" style="padding: 5% !important;">
+				<div class="content" id="banner-content" style="padding: 5% !important; opacity: 0; transform: translateX(-1rem); transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;">
 				</div>
 				<div class="image" style="position: relative;">
-					<img src="images/banner.webp" alt="" id="banner-foto" />
+					<img src="images/banner.webp" alt="" id="banner-foto" style="opacity: 0; transform: translateX(1rem); transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;" />
 				</div>
 				<!-- Schriftzug Overlay -->
 				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0; transition: opacity 0.9s ease-in-out;" />
@@ -298,11 +279,11 @@
 						revealed = true;
 						var foto = document.getElementById('banner-foto');
 						var content = document.getElementById('banner-content');
-						if (foto) foto.classList.add('reveal');
-						if (content) content.classList.add('reveal');
+						if (foto) { foto.style.opacity = '1'; foto.style.transform = 'translateX(0)'; }
+						if (content) { content.style.opacity = '1'; content.style.transform = 'translateX(0)'; }
 						setTimeout(function() {
 							var s = document.getElementById('banner-schriftzug');
-							if (s) s.classList.add('reveal');
+							if (s) s.style.opacity = '1';
 						}, 1500);
 					}
 
@@ -318,11 +299,9 @@
 					p1.src = 'images/banner.webp';
 					p2.src = 'images/banner-bg.jpg';
 
-					// Gecachte Bilder: complete ist sofort true, onload feuert nicht mehr
 					if (p1.complete) onLoad();
 					if (p2.complete) onLoad();
 
-					// Notfall-Fallback: nach 3 Sekunden auf jeden Fall aufdecken
 					setTimeout(revealBanner, 3000);
 				})();
 			</script>
