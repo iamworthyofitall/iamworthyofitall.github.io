@@ -253,6 +253,8 @@
 			}
 			.no-gap, p.no-gap, .spotlight .content p.no-gap { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 		</style>
+		<link rel="preload" href="images/banner.webp" as="image" />
+		<link rel="preload" href="images/banner-bg.jpg" as="image" />
 	</head>
 	<body class="is-preload">
 
@@ -272,7 +274,7 @@
 			<script>
 				(function() {
 					var revealed = false;
-					var count = 0;
+					var loaded = { foto: false, bg: false };
 
 					function revealBanner() {
 						if (revealed) return;
@@ -281,20 +283,19 @@
 						if (section) section.style.visibility = 'visible';
 					}
 
-					function onLoad() {
-						count++;
-						if (count >= 2) revealBanner();
+					function checkReveal() {
+						if (loaded.foto && loaded.bg) revealBanner();
 					}
 
 					var p1 = new Image();
-					var p2 = new Image();
-					p1.onload = p1.onerror = onLoad;
-					p2.onload = p2.onerror = onLoad;
+					p1.onload = p1.onerror = function() { loaded.foto = true; checkReveal(); };
 					p1.src = 'images/banner.webp';
-					p2.src = 'images/banner-bg.jpg';
+					if (p1.complete) { loaded.foto = true; checkReveal(); }
 
-					if (p1.complete) onLoad();
-					if (p2.complete) onLoad();
+					var p2 = new Image();
+					p2.onload = p2.onerror = function() { loaded.bg = true; checkReveal(); };
+					p2.src = 'images/banner-bg.jpg';
+					if (p2.complete) { loaded.bg = true; checkReveal(); }
 
 					setTimeout(revealBanner, 3000);
 				})();
