@@ -188,6 +188,35 @@
 				min-height: 100vh !important;
 				box-sizing: border-box !important;
 				padding: 0 3rem !important;
+				clip-path: inset(0 0 0 100%) !important;
+				-webkit-clip-path: inset(0 0 0 100%) !important;
+			}
+			#banner-foto {
+				clip-path: inset(0 100% 0 0) !important;
+				-webkit-clip-path: inset(0 100% 0 0) !important;
+			}
+
+			@keyframes revealLeft {
+				from { clip-path: inset(0 0 0 100%); -webkit-clip-path: inset(0 0 0 100%); }
+				to   { clip-path: inset(0 0 0 0%);   -webkit-clip-path: inset(0 0 0 0%); }
+			}
+			@keyframes revealRight {
+				from { clip-path: inset(0 100% 0 0); -webkit-clip-path: inset(0 100% 0 0); }
+				to   { clip-path: inset(0 0%   0 0); -webkit-clip-path: inset(0 0%   0 0); }
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to   { opacity: 1; }
+			}
+
+			#wrapper .banner .content.reveal {
+				animation: revealLeft 0.9s ease-in-out forwards !important;
+			}
+			#banner-foto.reveal {
+				animation: revealRight 0.9s ease-in-out forwards !important;
+			}
+			#banner-schriftzug.reveal {
+				animation: fadeIn 0.9s ease-in-out forwards !important;
 			}
 			@media screen and (max-width: 980px) {
 				#wrapper .banner .content {
@@ -260,58 +289,36 @@
 
 			<!-- Banner -->
 			<section class="banner style1 orient-left content-align-left image-position-right fullscreen" style="position: relative;">
-				<div class="content" id="banner-content" style="padding: 5% !important; clip-path: inset(0 0 0 100%); -webkit-clip-path: inset(0 0 0 100%); transition: clip-path 0.9s ease-in-out, -webkit-clip-path 0.9s ease-in-out;">
+				<div class="content" id="banner-content" style="padding: 5% !important;">
 				</div>
 				<div class="image" style="position: relative;">
-					<!-- FOTO BANNER: Ersetze images/banner.jpg mit deinem Bild -->
-					<img src="images/banner.webp" alt="" id="banner-foto" style="clip-path: inset(0 100% 0 0); -webkit-clip-path: inset(0 100% 0 0); transition: clip-path 0.9s ease-in-out, -webkit-clip-path 0.9s ease-in-out;" />
+					<img src="images/banner.webp" alt="" id="banner-foto" />
 				</div>
 				<!-- Schriftzug Overlay -->
-				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0; transition: opacity 0.9s ease-in-out;" />
+				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0;" />
 			</section>
 
 			<script>
-				// Foto + Logo-Hintergrund: beide komplett unabhängig vorladen, beide ERST gemeinsam einblenden, wenn beide fertig sind
-				// Reveal direkt per Inline-Style (kein CSS-Klassen-Umweg, keine Konflikte mit main.css möglich)
 				(function() {
-					var fotoImg = document.getElementById('banner-foto');
-					var contentEl = document.getElementById('banner-content');
-					var loadedCount = 0;
+					var loaded = 0;
 
-					function checkReveal() {
-						loadedCount++;
-						if (loadedCount < 2) return;
-						requestAnimationFrame(function() {
-							requestAnimationFrame(function() {
-								if (fotoImg) {
-									fotoImg.style.clipPath = 'inset(0 0% 0 0)';
-									fotoImg.style.webkitClipPath = 'inset(0 0% 0 0)';
-								}
-								if (contentEl) {
-									contentEl.style.clipPath = 'inset(0 0 0 0%)';
-									contentEl.style.webkitClipPath = 'inset(0 0 0 0%)';
-								}
-							});
-						});
+					function revealBanner() {
+						loaded++;
+						if (loaded < 2) return;
+						document.getElementById('banner-foto').classList.add('reveal');
+						document.getElementById('banner-content').classList.add('reveal');
+						setTimeout(function() {
+							document.getElementById('banner-schriftzug').classList.add('reveal');
+						}, 1500);
 					}
 
-					var fotoPreload = new Image();
-					fotoPreload.onload = checkReveal;
-					fotoPreload.src = 'images/banner.webp';
+					var p1 = new Image();
+					p1.onload = revealBanner;
+					p1.src = 'images/banner.webp';
 
-					var bgPreload = new Image();
-					bgPreload.onload = checkReveal;
-					bgPreload.src = 'images/banner-bg.jpg';
-				})();
-
-				// Schriftzug: fester Timer statt Bild-Onload — garantiert sichtbare, gleichbleibende Verzögerung bei jedem Aufruf
-				(function() {
-					document.addEventListener('DOMContentLoaded', function() {
-						setTimeout(function() {
-							var img = document.getElementById('banner-schriftzug');
-							if (img) img.style.opacity = '1';
-						}, 1500);
-					});
+					var p2 = new Image();
+					p2.onload = revealBanner;
+					p2.src = 'images/banner-bg.jpg';
 				})();
 			</script>
 
