@@ -259,14 +259,14 @@
 		<div id="wrapper" class="divided">
 
 			<!-- Banner -->
-			<section class="banner style1 orient-left content-align-left image-position-right fullscreen" style="position: relative;">
-				<div class="content" id="banner-content" style="padding: 5% !important; opacity: 0; transform: translateX(-1rem); transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;">
+			<section class="banner style1 orient-left content-align-left image-position-right fullscreen" id="banner-section" style="position: relative; visibility: hidden;">
+				<div class="content" id="banner-content" style="padding: 5% !important;">
 				</div>
 				<div class="image" style="position: relative;">
-					<img src="images/banner.webp" alt="" id="banner-foto" style="opacity: 0; transform: translateX(1rem); transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;" />
+					<img src="images/banner.webp" alt="" id="banner-foto" />
 				</div>
 				<!-- Schriftzug Overlay -->
-				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" style="opacity: 0; transition: opacity 0.9s ease-in-out;" />
+				<img src="images/schriftzug-banner.webp" alt="Dein Raum für tiefes Fühlen" id="banner-schriftzug" class="banner-schriftzug" />
 			</section>
 
 			<script>
@@ -277,14 +277,8 @@
 					function revealBanner() {
 						if (revealed) return;
 						revealed = true;
-						var foto = document.getElementById('banner-foto');
-						var content = document.getElementById('banner-content');
-						if (foto) { foto.style.opacity = '1'; foto.style.transform = 'translateX(0)'; }
-						if (content) { content.style.opacity = '1'; content.style.transform = 'translateX(0)'; }
-						setTimeout(function() {
-							var s = document.getElementById('banner-schriftzug');
-							if (s) s.style.opacity = '1';
-						}, 1500);
+						var section = document.getElementById('banner-section');
+						if (section) section.style.visibility = 'visible';
 					}
 
 					function onLoad() {
