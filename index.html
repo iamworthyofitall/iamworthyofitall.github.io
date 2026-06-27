@@ -485,8 +485,7 @@
 
 						<p id="disclaimer-hinweis" style="font-size: 0.8rem !important; opacity: 0.5 !important; text-align: center !important; margin-top: 2.5rem !important;"><strong style="opacity: 0.5; color: inherit !important; font-weight: 600;">Hinweise:</strong> Meine Begleitung ersetzt keine ärztliche, heilpraktische oder psychotherapeutische Behandlung.<br><span style="display: block; margin-top: 0.5em;">Mit dem Absenden des Formulars erklärst du dich mit der Verarbeitung deiner Daten gemäß meiner <a href="datenschutz.html" style="color:#1b516a !important; opacity: 1;">Datenschutzerklärung</a> einverstanden.</span></p>
 
-						<p id="form-success" style="display:none; color:#1b516a; margin-top:1rem; font-size:1.1rem; line-height:1.8;">Du Herz, Danke für deine Nachricht! Ich freue mich, von dir zu lesen und antworte dir so schnell wie möglich persönlich. 🤍</p>
-						<p id="form-error" style="display:none; color:#c0392b; margin-top:1rem;"></p>
+						<p id="form-success" style="display:none; color:#1b516a; margin-top:1rem; font-size:1.1rem; line-height:1.8;">Du Herz, Danke für deine Nachricht! Ich freue mich, von dir zu lesen und antworte dir so schnell wie möglich persönlich.</p>
 					</form>
 				</div>
 			</section>
@@ -526,9 +525,16 @@
 
 			document.getElementById('kontaktform').addEventListener('submit', function(e) {
 				e.preventDefault();
-				var errorEl = document.getElementById('form-error');
+				var errorName = document.getElementById('error-name');
+				var errorEmail = document.getElementById('error-email');
+				var errorMessage = document.getElementById('error-message');
+				function clearErrors() {
+					errorName.style.display = 'none';
+					errorEmail.style.display = 'none';
+					errorMessage.style.display = 'none';
+				}
 				var successEl = document.getElementById('form-success');
-				errorEl.style.display = 'none';
+				clearErrors();
 				successEl.style.display = 'none';
 
 				// 1. Honeypot prüfen
@@ -542,30 +548,30 @@
 				var message = document.getElementById('message').value.trim();
 
 				if (name === '') {
-					errorEl.textContent = 'Bitte gib deinen Namen ein.';
-					errorEl.style.display = 'block';
+					errorName.textContent = 'Bitte teile mir deinen Namen mit.';
+					errorName.style.display = 'block';
 					document.getElementById('name').focus();
 					return;
 				}
 
 				if (email === '') {
-					errorEl.textContent = 'Bitte gib deine E-Mail-Adresse ein.';
-					errorEl.style.display = 'block';
+					errorEmail.textContent = 'Bitte teile mir deine E-Mail-Adresse mit.';
+					errorEmail.style.display = 'block';
 					document.getElementById('email').focus();
 					return;
 				}
 
 				var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 				if (!emailRegex.test(email)) {
-					errorEl.textContent = 'Die eingegebene E-Mail-Adresse scheint nicht korrekt zu sein. Bitte prüfe sie nochmal (z. B. name@beispiel.de).';
-					errorEl.style.display = 'block';
+					errorEmail.textContent = 'Die eingegebene E-Mail-Adresse scheint nicht korrekt zu sein. Bitte prüfe sie nochmal (z. B. name@beispiel.de).';
+					errorEmail.style.display = 'block';
 					document.getElementById('email').focus();
 					return;
 				}
 
 				if (message === '') {
-					errorEl.textContent = 'Bitte teile mir dein Anliegen mit.';
-					errorEl.style.display = 'block';
+					errorMessage.textContent = 'Bitte teile mir dein Anliegen mit.';
+					errorMessage.style.display = 'block';
 					document.getElementById('message').focus();
 					return;
 				}
@@ -604,8 +610,8 @@
 					}
 				})
 				.catch(function() {
-					errorEl.textContent = 'Leider ist ein Fehler aufgetreten. Bitte schreib mir direkt an hi@iamworthyofitall.com.';
-					errorEl.style.display = 'block';
+					errorName.textContent = 'Leider ist ein Fehler aufgetreten. Bitte schreib mir direkt an hi@iamworthyofitall.com.';
+					errorName.style.display = 'block';
 					submitBtn.disabled = false;
 					submitBtn.value = 'Nachricht an Daniela senden';
 				});
