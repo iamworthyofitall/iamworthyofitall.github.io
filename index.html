@@ -290,6 +290,14 @@
 						if (section) section.style.visibility = 'visible';
 					}
 
+					// Höhe einmalig beim Laden setzen und einfrieren
+					var bannerSection = document.getElementById('banner-section');
+					if (bannerSection) {
+						var fixedHeight = window.innerHeight;
+						bannerSection.style.minHeight = fixedHeight + 'px';
+						bannerSection.style.height = fixedHeight + 'px';
+					}
+
 					function checkReveal() {
 						if (loaded.foto && loaded.bg) revealBanner();
 					}
